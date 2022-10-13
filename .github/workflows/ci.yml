@@ -1,11 +1,14 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - master
-    # paths:
-    #   - "hangman-api/**"
+  # push:
+  #   branches:
+  #     - master
+  #   # paths:
+  #   #   - "hangman-api/**"
+  workflow_dispatch:
+    
+
   pull_request:
     branches:
       - master
