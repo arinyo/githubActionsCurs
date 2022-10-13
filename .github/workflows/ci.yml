@@ -13,11 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: inspect
+      - name: inspect 2
         run: |
           ls -al
-          echo Qui soc? ${whoami}
+          echo Qui soc? $(whoami)
           pwd
-          node -v
+          nodeversion=$(node -v)
+          echo nodeversion = $nodeversion
           docker version
           docker compose version
