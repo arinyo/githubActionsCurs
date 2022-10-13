@@ -1,38 +1,56 @@
-name: Audit 
+name: Audit
 
-on: 
+on:
+  # push:
+  #   branches:
+  #     - master
+  #   # paths:
+  #   #   - "hangman-api/**"
   workflow_dispatch:
     
+
   pull_request:
     branches:
-      - main
+      - master
+    # paths:
+    #   - "hangman-api/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    # strategy:     Para crear varias ejecuciones del job con diferentes versiones
+    #   matrix: 
+    #     node-version: [14.x, 15.x, 16.x]
+
     steps:
       - uses: actions/checkout@v3
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{matrix.node-version}}
+      - name: inspect
+        run: |
+          ls -al
+          echo Qui soc? $(whoami)
+          pwd
+          nodeversion=$(node -v)
+          echo nodeversion = $nodeversion
+          docker version
+          docker compose version
       - name: build
         working-directory: ./hangman-api
         run: |
           npm ci
           npm run build --if-present
-      - uses: actions/upload-artifact@v3
-        with:
-          name: dependencies
-          path: hangman-api/node_modules # or path/to/artifact
-  
+
   test:
     runs-on: ubuntu-latest
-    needs: build
+
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: dependencies
-          path: hangman-api/node_modules
-      - name: test
+      - name: run test
         working-directory: ./hangman-api
         run: |
+          npm ci
           npm test
+
