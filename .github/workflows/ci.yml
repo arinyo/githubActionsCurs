@@ -16,8 +16,9 @@ jobs:
       - name: inspect 2
         run: |
           ls -al
-          echo Qui soc? ${whoami}
+          echo Qui soc? $(whoami)
           pwd
-          echo Nose version? ${node -v}
+          nodeversion=$(node -v)
+          echo $nodeversion
           docker version
           docker compose version
