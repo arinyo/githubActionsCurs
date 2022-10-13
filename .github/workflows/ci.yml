@@ -19,6 +19,6 @@ jobs:
           echo Qui soc? $(whoami)
           pwd
           nodeversion=$(node -v)
-          echo $nodeversion
+          echo nodeversion = $nodeversion
           docker version
           docker compose version
