@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: inspect
+      - name: run test
         working-directory: ./hangman-api
         run: |
           npm ci
