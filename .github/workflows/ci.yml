@@ -18,6 +18,6 @@ jobs:
           ls -al
           echo Qui soc? ${whoami}
           pwd
-          node -v
+          echo Nose version? ${node -v}
           docker version
           docker compose version
